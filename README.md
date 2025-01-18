@@ -9,7 +9,7 @@ Magicmirror module to chat with chat gpt
 Installation instruction 
 
 
-1. git clone https://github.com/sdmydbr9/MMM-Chat.git
+1. git clone https://github.com/magicmirror-sdmy/MMM-Chat.git
 2. cd MMM-Chat
 3. pip3 install -r requirements.txt
 
