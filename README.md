@@ -1,58 +1,102 @@
 # MMM-Chat
-Magicmirror module to chat with chat gpt 
 
-## This module assumes that your default installation location is /home/pi/MagicMirror. If youre using other locations, please update the node_helper.js with your correct directory.
+**MagicMirror Module to Chat with ChatGPT**
 
-## You can chnage the personality of the AI by editing line 26 in MMM-Chat.js. by default it is set to drunk AI
-## For example to make it sarcastic use this prompt  "Your name is Marvin and you are a paranoid android that reluctantly answers questions with sarcastic responses." in the MMM-Chat.js
-	}
-Installation instruction 
+---
 
+## Overview
+This module integrates ChatGPT into your MagicMirror setup, allowing you to interact with an AI assistant directly through your mirror. 
 
-1. git clone https://github.com/magicmirror-sdmy/MMM-Chat.git
-2. cd MMM-Chat
-3. pip3 install -r requirements.txt
+### Key Features:
+- Customize the AI's personality.
+- Speech-to-text integration using Google STT or Whisper API.
 
-Add the credentials to the MMM-Chat directory
+---
 
-## I have provided another script to use with the whisper api, but while testing didnt really provide as much accuracy as the google STT. Feel free to use the whisper.py with little modification to the node_helper.js (line 21). You will have to install the openai python library
+## Installation
 
-# Get the credentials for google speech to text
-You will need  google service account credentials and a billing account, go through the pricing, they offer a free quota and if you stay within that you will not be charged
+1. Clone the repository:
+    ```bash
+    git clone https://github.com/magicmirror-sdmy/MMM-Chat.git
+    cd MMM-Chat
+    ```
 
+2. Install dependencies:
+    ```bash
+    pip3 install -r requirements.txt
+    ```
 
-1. Go to the Google Cloud Console. ([https://console.cloud.google.com/])
-2. Create a new project or select an existing project.
-3. Navigate to the APIs & Services > Credentials page.
-4. Click Create credentials and select Service account key.
-5. Choose a service account name and select the Editor role.
-6. Go to the service account and click on add key.
-7. Select JSON as the key type and click Create.
-8. The JSON key file will be downloaded to your computer. Note the file path and name, as you will need to specify this in your Python code transcript.py.
-9. Or you can just rename it to credentials.json and place the credentials to the MMM-Chat directory.
+3. Add credentials to the `MMM-Chat` directory (see below for details).
 
-## to test if your set up was successful just run 
+---
 
-  
+## Configuration
+
+### Default Installation Path
+This module assumes the default installation path is `/home/pi/MagicMirror`. If you are using a different location, update `node_helper.js` with the correct directory.
+
+### Customizing the AI Personality
+You can change the personality of the AI by editing **line 26** in `MMM-Chat.js`. The default personality is set to "Drunk AI."
+
+#### Example:
+To make the AI sarcastic, use the following prompt:
+```javascript
+"Your name is Marvin and you are a paranoid android that reluctantly answers questions with sarcastic responses."
 ```
+
+Update the `MMM-Chat.js` file with the desired prompt.
+
+---
+
+## Google Speech-to-Text Setup
+
+### Prerequisites
+You will need:
+1. Google service account credentials.
+2. A billing account. Google offers a free quota; stay within this limit to avoid charges.
+
+### Steps
+1. Visit the [Google Cloud Console](https://console.cloud.google.com/).
+2. Create a new project or select an existing one.
+3. Navigate to **APIs & Services > Credentials**.
+4. Click **Create credentials** and select **Service account key**.
+5. Choose a service account name and assign the **Editor** role.
+6. Go to the service account and click **Add key**.
+7. Select **JSON** as the key type and click **Create**.
+
+The JSON key file will be downloaded. Rename it to `credentials.json` and place it in the `MMM-Chat` directory.
+
+### Testing Speech-to-Text
+To verify the setup, run the following command:
+```bash
 python3 transcript.py
-  
 ```
-And speak in the microphone, it will output with the transcription of your spoken words. 
+Speak into the microphone, and the transcription of your words should appear.
 
+---
 
-just add the following lines to your config 
+## Whisper API Integration
+A script is provided for use with the Whisper API. However, in testing, Google STT offered better accuracy. If you'd like to use Whisper:
+1. Modify **line 21** in `node_helper.js` to use `whisper.py`.
+2. Install the OpenAI Python library:
+    ```bash
+    pip3 install openai
+    ```
 
+---
 
-            {
-        module: "MMM-Chat",
-        config: {}
-        },
+## MagicMirror Configuration
+Add the following lines to your `config.js`:
+```javascript
+{
+    module: "MMM-Chat",
+    config: {}
+},
+```
 
-
-
-
-
+---
 
 ## Todo
-### Add prompt option in the config.js according to different personalities
+- Add a configuration option in `config.js` to support different AI personalities through prompts.
+
+---
